@@ -38,16 +38,24 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $count=0;
+                @endphp
                 @if(isset($emails))
-                @foreach($emails as $key => $value)
-                <tr>
-                 <td>{{ $value }}</td>
-                </tr>
-                @endforeach
+                    @foreach($emails as $key => $value)
+                        @if(filter_var($value, FILTER_VALIDATE_EMAIL))
+                        <tr>
+                            <td>{{ $value }}</td>
+                            @php
+                                $count++;
+                            @endphp
+                        </tr>
+                        @endif
+                    @endforeach
                 @endif
             </tbody>
         </table>
-        <h4>Total number of emails fetched from excel file: @if(isset($emails)) {{count($emails)}} @endif</h4>
+        <h4>Total number of emails fetched from excel file: @if(isset($emails)) {{$count}} @endif</h4>
 
     </body>
 </html>

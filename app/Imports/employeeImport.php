@@ -12,7 +12,7 @@ class employeeImport implements ToCollection
 
     public function collection(Collection $rows)
     {
-
+        // dd($rows);
         foreach($rows as $i){
             $this->data[] = $i[0];
         }
